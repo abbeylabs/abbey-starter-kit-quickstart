@@ -2,7 +2,7 @@ terraform {
   required_providers {
     abbey = {
       source = "abbeylabs/abbey"
-      version = "0.1.0-rc.4"
+      version = "0.1.0-rc.6"
     }
 
     null = {
@@ -50,4 +50,17 @@ resource "abbey_grant_kit" "null_grant" {
       }
     EOT
   }
+}
+
+resource "abbey_identity" "user_1" {
+  name = "..."
+
+  linked = jsonencode({
+    abbey = [
+      {
+        type  = "AuthId"
+        value = "..."
+      }
+    ]
+  })
 }
