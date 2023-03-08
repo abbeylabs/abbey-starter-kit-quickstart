@@ -46,7 +46,7 @@ resource "abbey_grant_kit" "null_grant" {
     # Path is an RFC 3986 URI, such as `github://{organization}/{repo}/path/to/file.tf`.
     location = "github://organization/repo/access.tf"
     append = <<-EOT
-      resource "null_resource" "null_grant_{{ $.data.system.abbey.primary_identity.username }}" {
+      resource "null_resource" "null_grant_{{ $.Data.System.Abbey.PrimaryIdentity.Username }}" {
       }
     EOT
   }
