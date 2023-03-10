@@ -9,6 +9,11 @@ terraform {
       source = "hashicorp/null"
       version = "3.2.1"
     }
+
+    random = {
+      source = "hashicorp/random"
+      version = "3.4.3"
+    }
   }
 }
 
@@ -17,6 +22,10 @@ provider "abbey" {
 }
 
 provider "null" {
+  # Configuration options
+}
+
+provider "random" {
   # Configuration options
 }
 
@@ -46,7 +55,7 @@ resource "abbey_grant_kit" "null_grant" {
     # Path is an RFC 3986 URI, such as `github://{organization}/{repo}/path/to/file.tf`.
     location = "github://organization/repo/access.tf"
     append = <<-EOT
-      resource "null_resource" "null_grant_{{ .data.system.abbey.primary_identity.abbey }}" {
+      resource "null_resource" "null_grant_${random_pet.random_pet_name.id}" {
       }
     EOT
   }
@@ -63,4 +72,9 @@ resource "abbey_identity" "user_1" {
       }
     ]
   })
+}
+
+resource "random_pet" "random_pet_name" {
+  length = 5
+  separator = "_"
 }
