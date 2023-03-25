@@ -62,7 +62,7 @@ resource "abbey_grant_kit" "null_grant" {
 }
 
 resource "abbey_identity" "user_1" {
-  name = "replace-me"
+  name = "User 1"
 
   linked = jsonencode({
     abbey = [
