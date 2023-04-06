@@ -1,4 +1,10 @@
 terraform {
+  backend "http" {
+    address        = "https://api.abbey.so/terraform-http-backend"
+    lock_address   = "https://api.abbey.so/terraform-http-backend"
+    unlock_address = "https://api.abbey.so/terraform-http-backend"
+  }
+
   required_providers {
     abbey = {
       source = "abbeylabs/abbey"

@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ABBEY_TOKEN: ${{ secrets.ABBEY_TOKEN }}
+      TF_HTTP_USERNAME: quickstart
+      TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
