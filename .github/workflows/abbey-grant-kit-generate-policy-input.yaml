@@ -7,25 +7,34 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ABBEY_TOKEN: ${{ secrets.ABBEY_TOKEN }}
-      TF_HTTP_USERNAME: quickstart
-      TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup Terraform
         id: setup
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: false
+
       - name: Terraform Init
         id: init
         run: terraform init
+        env:
+          TF_HTTP_USERNAME: quickstart
+          TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
+
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color -input=false -out=tfplan
+        env:
+          TF_HTTP_USERNAME: quickstart
+          TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
+
       - name: Terraform Show
         id: show
         run: echo "content=$(terraform show -no-color -json tfplan | jq '.variables.password |= "***" | tostring')" >> $GITHUB_OUTPUT
+
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
