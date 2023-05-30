@@ -6,10 +6,10 @@ from multiple reviewers, requiring only `one_of` the reviewers to approve the ac
 
 ## Usage
 
-Visit this [Starter Kit's docs](https://docs.abbey.so/getting-started/quickstart) for a short usage walkthrough.
+Visit this [Starter Kit's docs](https://docs.abbey.io/getting-started/quickstart) for a short usage walkthrough.
 
 ## :books: Learn More
 
 To learn more about Grant Kits and Grant Workflows, visit the following resources:
 
--   [Abbey Labs Documentation](https://docs.abbey.so) - learn about automating access management with Abbey Labs.
+-   [Abbey Labs Documentation](https://docs.abbey.io) - learn about automating access management with Abbey Labs.

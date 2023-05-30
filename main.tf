@@ -1,8 +1,8 @@
 terraform {
   backend "http" {
-    address        = "https://api.abbey.so/terraform-http-backend"
-    lock_address   = "https://api.abbey.so/terraform-http-backend/lock"
-    unlock_address = "https://api.abbey.so/terraform-http-backend/unlock"
+    address        = "https://api.abbey.io/terraform-http-backend"
+    lock_address   = "https://api.abbey.io/terraform-http-backend/lock"
+    unlock_address = "https://api.abbey.io/terraform-http-backend/unlock"
     lock_method    = "POST"
     unlock_method  = "POST"
   }
@@ -51,7 +51,7 @@ resource "abbey_grant_kit" "null_grant" {
         reviewers = {
           # Typically uses your Primary Identity.
           # For this local example, you can pass in an arbitrary string.
-          # For more information on what a Primary Identity is, visit https://docs.abbey.so.
+          # For more information on what a Primary Identity is, visit https://docs.abbey.io.
           one_of = ["replace-me@example.com"]
         }
       }
