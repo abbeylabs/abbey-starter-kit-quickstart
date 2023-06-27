@@ -9,7 +9,7 @@ jobs:
   materialize:
     runs-on: ubuntu-latest
     env:
-      ABBEY_TOKEN: ${{ secrets.ABBEY_TOKEN }}
+      TF_VAR_ABBEY_TOKEN: ${{ secrets.TF_VAR_ABBEY_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,11 +24,12 @@ jobs:
         run: terraform init
         env:
           TF_HTTP_USERNAME: quickstart
-          TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
+          TF_HTTP_PASSWORD: ${{ secrets.TF_VAR_ABBEY_TOKEN }}
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
         env:
-          TF_HTTP_USERNAME: quickstart
-          TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
+          TF_HTTP_USERNAME:   quickstart
+          TF_HTTP_PASSWORD:   ${{ secrets.TF_VAR_ABBEY_TOKEN }}
+          TF_VAR_abbey_token: ${{ secrets.TF_VAR_ABBEY_TOKEN }}

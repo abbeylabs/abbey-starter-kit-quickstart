@@ -6,7 +6,7 @@ jobs:
   output-plan:
     runs-on: ubuntu-latest
     env:
-      ABBEY_TOKEN: ${{ secrets.ABBEY_TOKEN }}
+      TF_VAR_ABBEY_TOKEN: ${{ secrets.TF_VAR_ABBEY_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,14 +22,14 @@ jobs:
         run: terraform init
         env:
           TF_HTTP_USERNAME: quickstart
-          TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
+          TF_HTTP_PASSWORD: ${{ secrets.TF_VAR_ABBEY_TOKEN }}
 
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color -input=false -out=tfplan
         env:
           TF_HTTP_USERNAME: quickstart
-          TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
+          TF_HTTP_PASSWORD: ${{ secrets.TF_VAR_ABBEY_TOKEN }}
 
       - name: Terraform Show
         id: show
