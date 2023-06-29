@@ -10,7 +10,7 @@ terraform {
   required_providers {
     abbey = {
       source = "abbeylabs/abbey"
-      version = "0.1.4"
+      version = "0.1.5-rc.2"
     }
 
     null = {
@@ -39,7 +39,7 @@ provider "random" {
 }
 
 resource "abbey_grant_kit" "null_grant" {
-  name = "Null grant"
+  name = "Null_grant"
   description = <<-EOT
     Grants access to a Null Resource.
     This Grant Kit uses a single-step Grant Workflow that requires only a single reviewer
