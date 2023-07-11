@@ -10,7 +10,7 @@ terraform {
   required_providers {
     abbey = {
       source = "abbeylabs/abbey"
-      version = "0.1.5-rc.2"
+      version = "0.2.2"
     }
 
     null = {
@@ -27,7 +27,7 @@ terraform {
 
 provider "abbey" {
   # Configuration options
-  bearer_auth = var.abbey_token
+  bearer_token = var.abbey_token
 }
 
 provider "null" {
