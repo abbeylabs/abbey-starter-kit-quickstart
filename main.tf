@@ -10,7 +10,7 @@ terraform {
   required_providers {
     abbey = {
       source = "abbeylabs/abbey"
-      version = "0.2.3"
+      version = "0.2.4"
     }
   }
 }
@@ -49,21 +49,9 @@ resource "abbey_grant_kit" "abbey_demo_site" {
     append = <<-EOT
       resource "abbey_demo" "grant_read_write_access" {
         permission = "read_write"
-        email = "{{ .data.system.abbey.abbey_identity }}"
+        email = "{{ .data.system.abbey.identities.abbey.email }}"
       }
     EOT
   }
 }
 
-resource "abbey_identity" "user_1" {
-  name = "User 1"
-
-  linked = jsonencode({
-    abbey = [
-      {
-        type  = "AuthId"
-        value = "replace-me@example.com" # CHANGEME
-      }
-    ]
-  })
-}
