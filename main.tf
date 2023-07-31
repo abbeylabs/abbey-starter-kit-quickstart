@@ -24,8 +24,6 @@ resource "abbey_grant_kit" "abbey_demo_site" {
   name = "Abbey_Demo_Site"
   description = <<-EOT
     Grants access to Abbey's Demo Page.
-    This Grant Kit uses a single-step Grant Workflow that requires only a single reviewer
-    from a list of reviewers to approve access.
   EOT
 
   workflow = {
