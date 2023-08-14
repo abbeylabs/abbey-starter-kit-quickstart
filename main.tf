@@ -12,12 +12,21 @@ terraform {
       source = "abbeylabs/abbey"
       version = "0.2.4"
     }
+
+    random = {
+      source = "hashicorp/random"
+      version = "3.4.3"
+    }
   }
 }
 
 provider "abbey" {
   # Configuration options
   bearer_auth = var.abbey_token
+}
+
+provider "random" {
+  # Configuration options
 }
 
 resource "abbey_grant_kit" "abbey_demo_site" {
@@ -45,7 +54,7 @@ resource "abbey_grant_kit" "abbey_demo_site" {
     # Path is an RFC 3986 URI, such as `github://{organization}/{repo}/path/to/file.tf`.
     location = "github://replace-me-with-organization/replace-me-with-repo/access.tf" # CHANGEME
     append = <<-EOT
-      resource "abbey_demo" "grant_read_write_access" {
+      resource "abbey_demo" "grant_read_write_access_${random_pet.random_pet_name.id}" {
         permission = "read_write"
         email = "{{ .data.system.abbey.identities.abbey.email }}"
       }
@@ -53,3 +62,10 @@ resource "abbey_grant_kit" "abbey_demo_site" {
   }
 }
 
+resource "random_pet" "random_pet_name" {
+  keepers = {
+    first = "${timestamp()}"
+  }
+  length = 5
+  separator = "_"
+}
