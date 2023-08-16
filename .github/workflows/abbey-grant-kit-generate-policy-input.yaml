@@ -30,16 +30,3 @@ jobs:
         env:
           TF_HTTP_USERNAME: quickstart
           TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
-
-      - name: Terraform Show
-        id: show
-        run: echo "content=$(terraform show -no-color -json tfplan | jq '.variables.password |= "***" | tostring')" >> $GITHUB_OUTPUT
-
-      - name: Create comment
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ```json
-            ${{ fromJson(steps.show.outputs.content) }}
-            ```
