@@ -20,6 +20,7 @@ provider "abbey" {
   bearer_auth = var.abbey_token
 }
 
+/* Uncomment and update
 resource "abbey_grant_kit" "abbey_demo_site" {
   name = "Abbey_Demo_Site"
   description = <<-EOT
@@ -52,4 +53,4 @@ resource "abbey_grant_kit" "abbey_demo_site" {
     EOT
   }
 }
-
+*/
