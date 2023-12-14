@@ -22,10 +22,6 @@ locals {
   repo = "github://${local.account_name}/${local.repo_name}"
   location = "${local.repo}/access.tf"
   policies = "${local.repo}/policies"
-
-  reviewers = [
-    "alice@example.com", #CHANGEME
-  ]
 }
 
 provider "abbey" {
@@ -43,7 +39,7 @@ resource "abbey_grant_kit" "abbey_demo_site" {
     steps = [
       {
         reviewers = {
-          one_of = local.reviewers
+          one_of = ["alice@example.com"] #CHANGEME
         }
       }
     ]
