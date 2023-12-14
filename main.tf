@@ -16,10 +16,10 @@ terraform {
 }
 
 locals {
-  username = "" #CHANGEME
+  account_name = "" #CHANGEME
   repo_name = "" #CHANGEME
 
-  repo = "github://${local.username}/${local.repo_name}"
+  repo = "github://${local.account_name}/${local.repo_name}"
   location = "${local.repo}/access.tf"
   policies = "${local.repo}/policies"
 
