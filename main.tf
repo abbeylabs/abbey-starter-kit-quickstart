@@ -50,7 +50,7 @@ resource "abbey_grant_kit" "abbey_demo_site" {
   ]
 
   output = {
-    location = local.ouput_location
+    location = local.output_location
     append = <<-EOT
       resource "abbey_demo" "grant_read_write_access" {
         permission = "read_write"
