@@ -20,7 +20,7 @@ locals {
   repo_name = "" #CHANGEME
 
   repo = "github://${local.account_name}/${local.repo_name}"
-  location = "${local.repo}/access.tf"
+  output_location = "${local.repo}/access.tf"
   policies = "${local.repo}/policies"
 }
 
