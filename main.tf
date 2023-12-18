@@ -46,7 +46,7 @@ resource "abbey_grant_kit" "abbey_demo_site" {
   }
 
   policies = [
-    { bundle = local.policies } # CHANGEME
+    { bundle = local.policies }
   ]
 
   output = {
