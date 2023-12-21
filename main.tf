@@ -1,32 +1,9 @@
-terraform {
-  backend "http" {
-    address        = "https://api.abbey.io/terraform-http-backend"
-    lock_address   = "https://api.abbey.io/terraform-http-backend/lock"
-    unlock_address = "https://api.abbey.io/terraform-http-backend/unlock"
-    lock_method    = "POST"
-    unlock_method  = "POST"
-  }
-
-  required_providers {
-    abbey = {
-      source = "abbeylabs/abbey"
-      version = "0.2.6"
-    }
-  }
-}
-
 locals {
-  account_name = "" #CHANGEME
-  repo_name = "" #CHANGEME
+  account_name = ""
+  repo_name = ""
 
-  repo = "github://${local.account_name}/${local.repo_name}"
-  output_location = "${local.repo}/access.tf"
-  policies = "${local.repo}/policies"
-}
-
-provider "abbey" {
-  # Configuration options
-  bearer_auth = var.abbey_token
+  project_path = "github://${local.account_name}/${local.repo_name}"
+  policies_path = "${local.project_path}/policies"
 }
 
 resource "abbey_grant_kit" "abbey_demo_site" {
@@ -46,15 +23,15 @@ resource "abbey_grant_kit" "abbey_demo_site" {
   }
 
   policies = [
-    { bundle = local.policies }
+    { bundle = local.policies_path }
   ]
 
   output = {
-    location = local.output_location
+    location = "${local.project_path}/access.tf"
     append = <<-EOT
       resource "abbey_demo" "grant_read_write_access" {
         permission = "read_write"
-        email = "{{ .data.system.abbey.identities.abbey.email }}"
+        email = "{{ .user.email }}"
       }
     EOT
   }

@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/abbeylabs/abbey" {
   version     = "0.2.6"
-  constraints = "0.2.6"
+  constraints = "~> 0.2.6"
   hashes = [
     "h1:fSkLgUxZWUrXvBzaIO05/GOESP3zJ1Lfwo82MCkPbT8=",
     "zh:03b2fa0a2365c2ab8605896d8d003e9367106bef5a1c11d7945ad8c7feb57856",
