@@ -1,6 +1,7 @@
-name: Abbey Grant Kit Materialize
+name: Abbey Grant Kit Terraform
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -11,6 +12,9 @@ jobs:
     env:
       TF_VAR_abbey_token: ${{ secrets.ABBEY_TOKEN }}
     steps:
+      - name: Workflow Queue
+        uses: ahmadnassri/action-workflow-queue@v1.2.0
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -22,6 +26,13 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+        env:
+          TF_HTTP_USERNAME: quickstart-basic
+          TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -input=false -out=tfplan
         env:
           TF_HTTP_USERNAME: quickstart-basic
           TF_HTTP_PASSWORD: ${{ secrets.ABBEY_TOKEN }}
